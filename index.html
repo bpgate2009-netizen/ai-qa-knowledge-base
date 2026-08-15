@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ledger — AI Q&amp;A Knowledge Base</title>
+<meta name="description" content="1,000,000 question-and-answer entries extracted from the AI Q&A knowledge base PDFs, browsable and searchable.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <div class="mark">
+      <span class="mark-glyph">§</span>
+    </div>
+    <div class="head-text">
+      <h1>The Ledger</h1>
+      <p class="tag">An index of the AI Q&amp;A knowledge base — <strong id="stat-total">1,000,000</strong> entries, extracted from 10 batches of source PDFs and made searchable.</p>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs wrap">
+  <button class="tab active" data-view="browse">Browse volumes</button>
+  <button class="tab" data-view="search">Search the index</button>
+</nav>
+
+<main class="wrap">
+
+  <!-- BROWSE VIEW -->
+  <section id="view-browse" class="view active">
+    <p class="section-note">Each volume below holds 100,000 entries. Open one to page through it, filter by subject, or search within it.</p>
+    <div id="volume-grid" class="volume-grid"></div>
+
+    <div id="category-summary" class="category-summary">
+      <h2>Subjects across the whole index</h2>
+      <div id="category-bars" class="category-bars"></div>
+    </div>
+  </section>
+
+  <!-- SEARCH VIEW -->
+  <section id="view-search" class="view">
+    <div class="search-panel">
+      <div class="search-row">
+        <input id="search-input" type="text" placeholder="Search questions and answers…" autocomplete="off">
+        <select id="scope-select">
+          <option value="loaded">Loaded volumes only</option>
+          <option value="all">All 1,000,000 entries (loads everything)</option>
+        </select>
+      </div>
+      <div class="chip-row" id="category-chips"></div>
+      <p id="search-status" class="search-status">Type to search, or choose “All 1,000,000 entries” and press Search to load the full index.</p>
+      <div id="load-progress" class="load-progress" hidden>
+        <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
+        <span id="load-label"></span>
+      </div>
+    </div>
+
+    <ol id="results-list" class="results-list"></ol>
+    <button id="load-more" class="load-more" hidden>Show 200 more results</button>
+  </section>
+
+  <!-- VOLUME READER VIEW -->
+  <section id="view-volume" class="view">
+    <button class="back-link" id="back-to-browse">&larr; All volumes</button>
+    <div class="volume-header">
+      <h2 id="volume-title">Volume</h2>
+      <div class="volume-controls">
+        <input id="volume-search" type="text" placeholder="Filter this volume…" autocomplete="off">
+        <div class="chip-row" id="volume-chips"></div>
+      </div>
+    </div>
+    <p id="volume-status" class="search-status"></p>
+    <ol id="volume-list" class="results-list"></ol>
+    <button id="volume-more" class="load-more" hidden>Show 200 more entries</button>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Source: 10 uploaded PDF batches, 1,000,000 Q&amp;A entries total. Text extracted and indexed — no PDFs embedded here.</p>
+  </div>
+</footer>
+
+<template id="entry-tpl">
+  <li class="entry">
+    <div class="entry-id"></div>
+    <div class="entry-body">
+      <p class="entry-q"></p>
+      <p class="entry-a"></p>
+      <span class="entry-cat"></span>
+    </div>
+  </li>
+</template>
+
+<script src="app.js"></script>
+</body>
+</html>
